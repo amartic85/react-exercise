@@ -6,11 +6,14 @@
     "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",
     "has-ansi": "^3.0.0",
+    "js-base64": "^2.3.2",
+    "jss": "^9.3.1",
     "prop-types": "^15.6.0",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
     "react-jss": "^7.2.0",
-    "react-scripts": "^1.0.14"
+    "react-scripts": "^1.0.14",
+    "twemoji-awesome": "^1.0.6"
   },
   "scripts": {
     "start": "react-scripts start",

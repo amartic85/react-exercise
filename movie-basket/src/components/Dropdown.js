@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import injectSheet from 'react-jss';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import jss from "jss";
+import {dropdownStyleWithTheme} from "../jss-style/ThemedDropdownStyle.js"
+
+function convertWidth(value)
+{
+    let intValue = parseInt(value) - 2;
+    return intValue + 'px';
+}
 
 const styles = {
     toggle: {
@@ -9,6 +17,8 @@ const styles = {
       background: props => props.toggleBckColor,
       color: props => props.toggleColor,
       borderRadius: '6px',
+      borderStyle: 'solid',
+      borderWidth: '1px',
       borderColor: props => props.toggleBorderColor,
       padding: "7px 10px 7px 20px",
       fontSize: "large",
@@ -16,17 +26,22 @@ const styles = {
       '&:hover':{
             background: props => props.toggleActiveBckColor ? props.toggleActiveBckColor : props.toggleBckColor,
             borderColor: props => props.toggleActiveBorderColor ? props.toggleActiveBorderColor : props.toggleBorderColor,
+            color: props => props.toggleActiveColor ? props.toggleActiveColor : props.toggleColor
       },
       '&:active':{
             background: props => props.toggleActiveBckColor ? props.toggleActiveBckColor : props.toggleBckColor,
             borderColor: props => props.toggleActiveBorderColor ? props.toggleActiveBorderColor : props.toggleBorderColor,
+            color: props => props.toggleActiveColor ? props.toggleActiveColor : props.toggleColor,
             boxShadow: "inset 0 3px 5px rgba(0, 0, 0, 0.125)",
       },
       '&:focus':{
           outline: 0
       },
       '&.open':{
-          borderRadius: "6px 6px 0px 0px"
+        background: props => props.toggleActiveBckColor ? props.toggleActiveBckColor : props.toggleBckColor,
+        borderColor: props => props.toggleActiveBorderColor ? props.toggleActiveBorderColor : props.toggleBorderColor,
+        color: props => props.toggleActiveColor ? props.toggleActiveColor : props.toggleColor,
+        borderRadius: "6px 6px 0px 0px"
       }
     },
 
@@ -50,7 +65,8 @@ const styles = {
     },
 
     itemsContainer: {
-        border: props => "2px solid " + props.dropdownBorderColor,
+        minWidth: props => convertWidth(props.toggleWidth),
+        border: props => "1px solid " + props.dropdownBorderColor,
         background: props => props.dropdownBckColor,
         zIndex: "2",
         fontSize: "medium",
@@ -59,11 +75,11 @@ const styles = {
         position: "absolute",
         whiteSpace: "nowrap",
         "&.right":{
-            borderRadius: "9px 0px 9px 9px",
+            borderRadius: props => props.noTopRadius ?"0px 0px 9px 9px":"9px 0px 9px 9px",
             right: "0"
         },
         "&.left": {
-            borderRadius: "0px 9px 9px 9px",
+            borderRadius: props => props.noTopRadius ?"0px 0px 9px 9px":"0px 9px 9px 9px",
             left: "0"
         }
     },
@@ -77,11 +93,10 @@ const styles = {
         cursor: "pointer",
         '&:hover': {
            background: props => props.dropdownSelectColor
+        },
+        '&.last':{
+            borderBottom: "none"
         }
-    },
-
-    lastItem: {
-        borderBottom: "none",
     }
   }
 
@@ -135,7 +150,7 @@ export class Dropdown extends Component {
                     let cls;
                     if(index === (count - 1) )
                     {
-                       cls = classNames(classes.item, classes.lastItem);
+                       cls = classNames(classes.item, 'last');
                     }
                     else{
                         cls = classes.item;
@@ -166,17 +181,20 @@ export class Dropdown extends Component {
     }
 }
 
+
 Dropdown.defaultProps = {
     toggleWidth: "120px",
     toggleColor: "white",
     toggleBckColor: "#61DAFB",
     toggleBorderColor: "#61DAFB",
+    toggleActiveColor: "white",
     toggleActiveBckColor: "#48D4FA",
     toggleActiveBorderColor: "#2FCEFA",
     dropdownBorderColor: "#31B0F4",
     dropdownBckColor: "#282C34",
     dropdownSelectColor: "#53565D",
-    dropdownColor: "#D3D3D3"
+    dropdownColor: "#D3D3D3",
+    noTopRadius: false
 }
 
 Dropdown.propTypes = {
@@ -190,6 +208,8 @@ Dropdown.propTypes = {
     toggleBckColor: PropTypes.string,
     /** Toggle button border color */
     toggleBorderColor: PropTypes.string,
+    /** Toggle button :active and : hover color */
+    toggleActiveColor: PropTypes.string,
     /** Toggle button :active and :hover background color */
     toggleActiveBckColor: PropTypes.string,
     /** Toggle button :active and :hover border color */
@@ -201,8 +221,10 @@ Dropdown.propTypes = {
     /** Dropdown list border color */
     dropdownBorderColor: PropTypes.string,
     /** Dropdown item selection color */
-    dropdownSelectColor: PropTypes.string
+    dropdownSelectColor: PropTypes.string,
+    //** True if both top-left and top-right border radious should be 0 */
+    noTopRadius: PropTypes.bool
 }
-
 export default injectSheet(styles)(Dropdown)
-export const ThemedDropdown = injectSheet(styles)(Dropdown)
+export const ThemedDropdown = injectSheet(dropdownStyleWithTheme)(Dropdown)
+//console.log(jss.createStyleSheet(styles).toString());
