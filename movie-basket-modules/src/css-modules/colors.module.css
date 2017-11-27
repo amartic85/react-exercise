@@ -1,0 +1,49 @@
+.primaryBlueBackground{
+    background-color: #325D88;
+}
+
+.primaryBlueBackgroundHighlight{
+    background-color: #284a6c;
+}
+.primaryBlueBackground:hover{
+    background-color: #284a6c;
+}
+
+.primaryBlueBackground:active{
+    background-color: #284a6c;
+}
+
+.primaryBlueBorderHighlight{
+    border-color: rgb(36, 68, 99);
+}
+.primaryBlueBorder:active{
+    border-color: rgb(36, 68, 99);
+}
+
+.primaryBlueBorder:hover{
+    border-color: rgb(36, 68, 99);
+}
+
+.primaryLightText{
+    color: white;
+}
+
+.primaryLightText:hover{
+    color: white;
+}
+.secondaryDarkBackgroundHighlight{
+    background-color: rgba(50, 93, 136, 0.1);
+}
+
+.secondaryDarkBackgroundHighlightOnHover:hover{
+    background-color: rgba(50, 93, 136, 0.1);
+
+}
+.secondaryDarkBackground{
+    background-color: rgb(250, 250, 250);
+}
+
+
+.secondaryLightText{
+    color: rgb(68, 68, 68);
+}

@@ -1,0 +1,115 @@
+.toggle{
+    composes: primaryBlueBackground from './colors.module.css';
+    composes: primaryLightText from './colors.module.css';
+    composes: primaryBlueBorder from './colors.module.css';
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 7px 10px 7px 20px;
+    font-size: large;
+    text-align: center;
+}
+
+/* .toggle.open{
+    composes: primaryBlueBackgroundHighlight from './colors.module.css';
+    composes: primaryBlueBorderHighlight from './colors.module.css';
+    composes: primaryLightText from './colors.module.css';
+    border-radius: 6px 6px 0px 0px;
+} */
+
+.toggleOpen{
+    composes: toggle;
+    composes: primaryBlueBackgroundHighlight from './colors.module.css';
+    composes: primaryBlueBorderHighlight from './colors.module.css';
+    composes: primaryLightText from './colors.module.css';
+    border-radius: 6px 6px 0px 0px;
+}
+
+.toggle:active{
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.toggle:focus{
+    outline: 0;
+}
+
+.rightSideIcon{
+    margin-left: 15px;
+}
+
+.dropdownContainer{
+    position: relative;
+    display: inline-block;
+}
+
+.dropdownList {
+    transform: scale(1,0);
+    transition: transform ease 250ms;
+    position: relative;
+    transform-origin: top;
+}
+
+.dropdownList.show {
+    transform: scale(1,1);
+}
+
+.itemsContainer{
+    composes: primaryBlueBorderHighlight from './colors.module.css';
+    composes: secondaryDarkBackground from './colors.module.css';
+    border-width: 1px;
+    border-style: solid;
+    z-index: 2;
+    font-size: medium;
+    margin-top: -2px;
+    overflow: auto;
+    position: absolute;
+    white-space: nowrap;
+}
+
+.itemsContainer.rightNoTopRadius{
+    right: 0;
+    border-radius: 0px 0px 9px 9px;
+    
+}
+
+.itemsContainer.right {
+    right: 0;
+    border-radius: 9px 0px 9px 9px;
+}
+
+.itemsContainer.leftNoTopRadius{
+    left: 0;
+    border-radius: 0px 0px 9px 9px;
+}
+
+.itemsContainer.left{
+    left: 0;
+    border-radius: 0px 9px 9px 9px;
+}
+
+.item{
+    composes: primaryBlueBorderHighlight from './colors.module.css';
+    composes: secondaryLightText from './colors.module.css';
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    padding: 10px;
+    font-size: small;
+    position: relative;
+    cursor: pointer;
+    composes: secondaryDarkBackgroundHighlightOnHover from './colors.module.css';
+
+}
+
+
+/* .item:hover{
+    composes: secondaryDarkBackgroundHighlight;
+} */
+
+.item.last{
+    border-bottom: none;
+}
+
+
+.dropdownList > div{
+    border-radius: 0px 0px 9px 9px;
+}

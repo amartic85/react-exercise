@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import { withInfo } from '@storybook/addon-info';
 import "../node_modules/twemoji-awesome/dist/twemoji-awesome.min.css";
 import {blueDarkTheme} from "../src/jss-style/BlueTheme.js"
+import {DropdownWithCss} from "../src/components/DropdownWithCss.js";
 
 const animalsProps = {
   defaultText: "Twemoji",
@@ -132,5 +133,32 @@ storiesOf('Themed Dropdown', module)
       </ThemedDropdown>
       </ThemeProvider>
       </div>
+  )
+)
+
+storiesOf('CSS Modules Dropdown', module)
+.add('Blue dark theme',
+  withInfo({
+    text: 'String or React Element with docs about my component', 
+  })(() =>
+    <div style={{width: "120px", margin: "20px auto"}}>
+     <DropdownWithCss  defaultText= "Twemoji" dropToLeft="true" toggleWidth="150px" noTopRadius="true">
+        <DropdownItem title="Chick">
+          <span>
+            <span style={{width: "50%", display: "inline-block"}}>Chick</span><span style={{width: "50%", display: "inline-block", textAlign:"right"}}><i class="twa twa-2x twa-1f423"></i></span>
+          </span>
+        </DropdownItem >
+        <DropdownItem title="Bird">
+          <span>
+            <span style={{width: "50%", display: "inline-block"}}>Bird</span><span style={{width: "50%", display: "inline-block", textAlign:"right"}}><i class="twa twa-2x twa-1f426"></i></span>
+          </span>
+        </DropdownItem >
+        <DropdownItem title="Penguin">
+          <span>
+            <span style={{width: "50%", display: "inline-block"}}>Penguin</span><span style={{width: "50%", display: "inline-block", textAlign:"right"}}><i class="twa twa-2x twa-1f427"></i></span>
+          </span>
+        </DropdownItem >
+      </DropdownWithCss>
+    </div>
   )
 )
